@@ -1,0 +1,694 @@
+/* Section Cart */
+
+.section-cart{
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    padding: 7vh 0px;
+}
+.cart-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+/* Mobile Handling */
+@media (max-width: 576px){
+    .cart-container {
+        flex-wrap: wrap;
+    }
+}
+/* Mobile Handling */
+
+
+.cart-box{
+    float: left;
+    flex: 1 1 70%;
+    margin: 0 10px;
+}
+
+.cart-title{
+    padding: 10px 0px;
+    line-height: 30px;
+    color: #181818;
+    font: normal normal normal 20px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+}
+
+.cart-box-content{
+    border-bottom: solid 1px;
+    border-color: #C4C4C4;
+}
+.cart-product{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 32px 0px;
+    border-top: solid 1px;
+    border-color: #C4C4C4;
+}
+.cart-product-left-data {
+    flex: 1 1 20%;
+}
+
+.cart-product-left-data a img{
+    max-height: 150px;
+    max-width: 150px;
+    border: 1px solid #C4C4C4;;
+}
+.cart-product-center-data {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cart-product-center-data h3{
+    font-size: 16px;
+    color: #000000;
+}
+.cart-product-center-data span{
+    font-size: 13px;
+    font-weight: 900;
+    color: #58625e;
+}
+.cart-inputbox{
+    display: flex;
+    border: 1px solid;
+    border-color: rgba(24, 24, 24, 0.8);
+    width: 80px;
+    height: 30px;
+    position: relative;    
+    background-color: transparent;
+    justify-content: space-between;
+}
+.cart-inputbox button{
+    width: 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.cart-inputbox input{
+    width: 20px;
+    border-width:0px;
+    border:none;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.cart-product-right-data {
+    flex: 1 1 20%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.cart-product-right-data h3{
+    font-size: 16px;
+    color: #000000;
+}
+.cart-product-right-data button{
+    height: 0;
+    width: 0;
+}
+.cart-product-right-data button svg{
+    height: 12px;
+    width: 12px;
+}
+
+.cart-bottom{
+    padding: 20px 10px;
+}
+.cart-empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 55vh;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    border-color: #7a7a7a;
+    margin-bottom: 10vh;
+}
+.cart-empty span{
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px 20px;
+}
+.cart-empty button{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    border-color: #181818;
+    background-color: #181818;
+    color: #FFFFFF;
+    height: 42px;
+}
+.cart-empty button:hover{
+    border-color: #F2F2F2;
+    background-color: #F2F2F2;
+    color: #181818;
+}
+
+
+.order-summery{
+    float: right;
+    flex: 1 1 30%;
+    margin: 0 10px;
+}
+.order-summery-top{
+    padding: 10px 0px;
+    line-height: 30px;
+    color: #181818;
+    font: normal normal normal 20px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+
+}
+.order-summery-center{
+    border-bottom: solid 1px;
+    border-top: solid 1px;
+    border-color: #C4C4C4;
+    padding: 32px 0px;
+}
+.order-summery-center-line{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.order-summery-bottom{
+    padding: 12px 0px;
+}
+.order-summery-bottom-line{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    font-size: 15px;
+    font-weight: 600;
+}
+.order-summery-checkout button{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    width: 100%;
+    border-color: #181818;
+    background-color: #181818;
+    color: #FFFFFF;
+    height: 42px;
+}
+.order-summery-checkout button:hover{
+    border-color: #F2F2F2;
+    background-color: #F2F2F2;
+    color: #181818;
+}
+/* Section Cart */
+
+
+/* Section Login */
+.section-login{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 70vh;
+    padding: 7vh 0px;
+}
+
+.login-header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px 0px;
+}
+.login-header .seperator{
+    margin: 15px 0px;
+    width: 20%;
+    border-bottom:  3px solid #ff4040;
+}
+
+.login-box{
+    width: 100%;
+    max-width: 640px;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    border: 3px solid #F4F7F6;
+}
+
+.login-box div div{
+    padding: .375rem 0;
+}
+
+.login-box div label{
+    font-weight: bold;
+}
+
+.login-box div div input{
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border: #dddfe2 1px solid;
+    outline: none;
+}
+
+.login-box div button{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    width: 100%;
+    border-color: #181818;
+    background-color: #181818;
+    color: #FFFFFF;
+    height: 42px;
+}
+.login-box div button:hover{
+    border-color: #F2F2F2;
+    background-color: #F2F2F2;
+    color: #181818;
+}
+
+.create-account-btn{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    width: 100%;
+    border-color: #fafafa;
+    background-color: #fafafa;
+    color: #007fbb;
+    height: 42px;
+}
+/* Section Login */
+
+/* Product Details View */
+.section-product{
+    min-height: 70vh;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+.Product{
+    position: relative;
+    margin: 0 auto 50px auto;
+    max-width: 1330px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Product__Gallery{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.Product__SlideshowNav{
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    align-self: flex-start;
+}
+
+.Product__SlideshowNav div ol{
+    display: flex;
+    flex-direction: column;
+}
+
+.Product__Slideshow{
+    max-width: 550px;
+    height: 100%;
+}
+
+.Product__Slideshow img {
+    padding: 20px 0px;
+    opacity: 1;
+    max-width: 550px;
+}
+
+.Product__InfoWrapper{
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    align-self: flex-start;
+    top: 0;
+    margin: 0px 20px;
+    width: 400px;
+}
+
+/* Slider Product */
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.product-slider-page-dots {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    width: auto;
+    margin: 0;
+    bottom: 25px;
+    right: 24px;
+    left: auto;
+}
+
+.product-slider-page-dots .dot {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid #ddd;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+    margin-bottom: 12px;
+}
+
+.product-slider-page-dots .dot.is-selected {
+    background: #1c1b1b;
+    border: 2px solid #1c1b1b;
+}
+
+/* Slider Product */
+
+/* Product Details View */
+
+
+/* Account Page*/
+
+/* Account Header*/
+.section-account{
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
+    padding: 7vh 0px;
+    display: flex;
+    flex-direction: column;
+}
+.section-account header a{
+    text-decoration: none;
+    float: right;
+    margin: auto;
+}
+
+.section-account header a button{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    background-color: #FFFFFF;
+    color: #ff4040;
+    height: 42px;
+    letter-spacing: 0.2em;
+}
+
+.section-account header a button:hover{
+    color: #ff4040;
+}
+
+.section-account header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-size: 15px;
+    margin-bottom: 50px;
+}
+.section-account header h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #6a6a6a;
+}
+/* Account Header */
+/* Account Content*/
+.section-account section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+/* Mobile Handling */
+@media (max-width: 900px){
+    .section-account section {
+        flex-wrap: wrap;
+    }
+}
+/* Mobile Handling */
+
+.orders-box{
+    float: left;
+    flex: 1 1 70%;
+    margin: 0 10px;
+}
+
+
+.orders-box .title{
+    padding: 10px 0px;
+    line-height: 30px;
+    color: #6a6a6a;
+    font: normal normal normal 13px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    letter-spacing: 0.2em;
+}
+
+.orders-box .content{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 22px 0px;
+    border-top: solid 1px;
+    border-color: #7a7a7a;
+}
+
+.addresses-box{
+    flex: 1 1 30%;
+    margin: 0 10px;
+}
+.addresses-box .top{
+    padding: 10px 0px;
+    line-height: 30px;
+    color: #6a6a6a;
+    font: normal normal normal 13px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    letter-spacing: 0.2em;
+
+}
+.addresses-box .center{
+    border-top: solid 1px;
+    border-color: #7a7a7a;
+    padding: 22px 0px;
+}
+.addresses-box .center-line{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    font-weight: 500;
+}
+
+.addresses-box .bottom button{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    width: 100%;
+    border-color: #181818;
+    background-color: #181818;
+    color: #FFFFFF;
+    height: 42px;
+    letter-spacing: 0.2em;
+}
+/* Account Content*/
+/* Account Page */
+
+/* Adresses Page */
+/* Header*/
+.section-addresses{
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
+    padding: 7vh 0px;
+    display: flex;
+    flex-direction: column;
+}
+.section-addresses header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-size: 15px;
+    margin-bottom: 50px;
+}
+.section-addresses header h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #6a6a6a;
+}
+/* Header*/
+/* Content*/
+.section-addresses section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-size: 15px;
+    font-weight: 300;
+}
+.section-addresses .addresses-box{
+    flex: 1 1 30%;
+    margin: 20px 20px;
+    max-width: 30%;
+}
+.section-addresses .addresses-box .bottom{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.section-addresses .addresses-box .bottom a{
+    margin: 10px;
+} 
+/* Content*/
+/* Adresses Page */
+
+
+/* Order Details Page */
+/* Header*/
+.section-order-details{
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
+    padding: 7vh 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+.section-order-details header h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #6a6a6a;
+    margin-bottom: 50px;
+    text-align: center;
+}
+/* Header */
+/* Content of each section*/
+
+.section-order-details section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.section-order-details section .top{
+    font: normal normal normal 20px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    letter-spacing: 0.2em;
+    border-bottom: solid 1px;
+    border-color: #7a7a7a;
+    padding: 10px 0px;
+}
+.section-order-details section .content{
+    padding: 22px 0px;
+}
+/* Content */
+/* Order Details Page */
+
+
+/* Checkout page */
+.section-checkout .content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.section-checkout .headerBar_logo{ /* Top Logo on phone */
+    display: none;
+}
+
+.section-checkout .content .main{
+    flex: 1 1 55%;
+    float: left;
+    background-color: #FFFFFF;
+}
+
+.section-checkout .content .main .inside{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding: 0px 30px;
+}
+.section-checkout .content .main .headerBar_logo{ /* main Logo on PC */
+    display: block;
+}
+
+.section-checkout .content .aside{
+    flex: 1 1 45%;
+    float: right;
+    background-color: #EFEFEF;
+    border-left: 1px solid #DCDCDC;
+}
+.section-checkout .content .aside .inside{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding: 0px 30px;
+}
+
+/* Mobile Handling */
+@media (max-width: 1000px){
+    .section-checkout .content{
+        flex-direction: column; /* column-reverse;*/
+    }
+    .section-checkout .headerBar_logo{ /* Top Logo on phone */
+        display: block;
+    }
+    .section-checkout .content .main .headerBar_logo{ /* main Logo on PC */
+        display: none;
+    }
+}
+/* Mobile Handling */
+
+/* Main forms*/
+.main-box{
+    flex: 1 1 30%;
+    margin: 0 10px;
+}
+.main-box .top{
+    padding: 10px 0px;
+    line-height: 30px;
+    color: #6a6a6a;
+    font: normal normal normal 13px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    letter-spacing: 0.2em;
+
+}
+.main-box .center{
+    border-top: solid 1px;
+    border-color: #7a7a7a;
+    padding: 22px 0px;
+}
+.main-box .center-line{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    font-weight: 500;
+}
+
+.main-box .bottom button{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    width: 100%;
+    border-color: #181818;
+    background-color: #181818;
+    color: #FFFFFF;
+    height: 42px;
+    letter-spacing: 0.2em;
+}
+
+.user-bar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.user-bar img{
+    max-width: 50px;
+    max-height: 50px;
+    border: 1px solid #6a6a6a;
+    border-radius: 20%;
+}
+/* Main forms*/
+/* Checkout page */

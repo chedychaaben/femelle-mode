@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Femelle mode | Product{% endblock %}
+
+{% block content %}
+        <section class="section-product">
+            <div class="Product">
+                <div class="Product__Gallery">
+                    <div class="Product__SlideshowNav">
+                        <div class="indicators"></div>
+                    </div>
+                    <div class="Product__Slideshow">
+                        {% for img in article.images.all %}
+                            <img src="{{ MEDIA_URL }}{{img.image.url}}">
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <div class="Product__InfoWrapper">
+
+                    <div class="Container">
+                        <div class="ProductMeta">
+                            <h1 class="ProductMeta__Title Heading u-h2">{{article.title}}</h1>
+                            <div class="ProductMeta__PriceList Heading">
+                                <span class="money">{{article.prix}} TND</span>
+                            </div>
+                                <div class="ProductMeta__Description">
+                                    {{article.description|safe}}
+                                </div>
+                            <a href="#"  type="button" class="site-btn btn-line update-cart" data-article="{{article.id}}" data-action="up">ADD TO CART</a>
+                        </div></div></div>
+
+                </div>
+
+            </div>
+        </section>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'static/js/productPageSlider.js' %}?v={% now "HMf" %}" ></script>
+{% endblock scripts %}

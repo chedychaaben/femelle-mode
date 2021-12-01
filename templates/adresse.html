@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %} 
+{% load static %}
+{% block title %}Femelle mode | Créez Adresse {% endblock %}
+
+{% block content %}
+
+<section class="section-breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage' %}" >Accueil</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'account' %}">Mon compte</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'adresses' %}">Mes Adresses</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Créer une nouvelle adresse</li>
+        </ol>
+    </nav>
+</section>
+
+<section class="section-adresse">
+    <div class="container">
+        <div class="login-box">
+            <hr/>
+        <form class="form-signin" method="POST">{% csrf_token %} 
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert" style="text-align: center;">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% for field in form.visible_fields %}
+                {% if field.name == 'ville' %}
+                    <div class="form-group">
+                        <label>{{ field.label_tag }}</label>
+                        <div style="width: 100%;">
+                            <select name="ville" class="form-control form-control-select">
+                                <option value="Ariana">Ariana</option>
+                                <option value="Ben arous">Ben arous</option>
+                                <option value="Bizerte">Bizerte</option>
+                                <option value="Béja">Béja</option>
+                                <option value="Gabès">Gabès</option>
+                                <option value="Gafsa">Gafsa</option>
+                                <option value="Jendouba">Jendouba</option>
+                                <option value="Kairouan">Kairouan</option>
+                                <option value="Kasserine">Kasserine</option>
+                                <option value="Kébili">Kébili</option>
+                                <option value="La manouba">La manouba</option>
+                                <option value="Le kef">Le kef</option>
+                                <option value="Mahdia">Mahdia</option>
+                                <option value="Monastir">Monastir</option>
+                                <option value="Médenine">Médenine</option>
+                                <option value="Nabeul">Nabeul</option>
+                                <option value="Sfax" selected >Sfax</option>
+                                <option value="Sidi bouzid">Sidi bouzid</option>
+                                <option value="Siliana">Siliana</option>
+                                <option value="Sousse">Sousse</option>
+                                <option value="Tataouine">Tataouine</option>
+                                <option value="Tozeur">Tozeur</option>
+                                <option value="Tunis">Tunis</option>
+                                <option value="Zaghouan">Zaghouan</option>
+                            </select>
+                        </div>
+                    </div>
+                {% else %}
+                <div class="form-group">
+                    {{ field | as_crispy_field }}
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div>
+                <button type="submit">
+                    Créez l'adresse 
+                </button>
+            </div>
+        </form>
+        <hr/>
+        </div>
+    </div>
+
+</section>
+{% endblock content %}

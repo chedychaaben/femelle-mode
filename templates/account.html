@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Femelle mode |  {%if request.user.nom != '' and request.user.prenom != '' %}{{request.user.nom}} {{request.user.prenom}}{%else%}{{request.user.email}}{%endif%}  {% endblock %}
+
+{% block content %}
+         <section class="section-breadcrumb">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}" style="color: #ff4040; text-decoration: none;">Accueil</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Mon compte</li>
+                </ol>
+            </nav>
+        </section>
+
+    <section class="section-account">
+        <header>
+            <h1>MON COMPTE</h1>
+            <hr>
+            <p>Bienvenue sur votre page d'accueil,  {%if request.user.nom != '' and request.user.prenom != '' %}{{request.user.nom}} {{request.user.prenom}}{%else%}{{request.user.email}}{%endif%}  !</p>
+            <p>Vous pouvez gérer vos informations personnelles ainsi que vos commandes.</p>
+            <a href="{% url 'profile' %}">
+                <button>Modifier vos informations personnelles</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button>Déconnexion</button>
+            </a>
+        </header>
+        <section>
+            <div class="orders-box">
+
+                <div class="title">
+                    <span>Historique de vos commandes</span>
+                </div>
+                
+                <div class="content">
+                    <!--
+                    No order Placed 
+                    OR-->
+                    {% if orders|length > 0 %}
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" >Référence de commande</th>
+                                <th scope="col" >Date</th>
+                                <th scope="col" >Prix total</th>
+                                <th scope="col" >État</th>
+                                <th scope="col" >Plus d'informations</th>
+                            </tr>
+                        </thead>
+
+                        <tbody  class="thead-light">
+                            {% for order in orders%}
+                            <tr>
+                                <td>{{order.transaction_id}}</td>
+                                <td>{{order.ordered_date}}</td>
+                                <td>{{order.prix}} DT</td>
+                                <td><span class="label label-pill dark" style="background-color: {{order.states.last.color}};">{{order.states.last.text}}</span></td>
+                                <td><a href="{% url 'order_detail' order.id %}" style="color: #ff4040; text-decoration: none;">Détails</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {%else%}
+                    <article class="alert alert-dark" role="alert" data-alert="dark" style="width: 100%;text-align: center;">Vous n'avez pas encore passé de commande.</article>
+                    {%endif%}
+                </div>
+
+            </div>
+
+            <div class="addresses-box">
+                <div class="top">
+                    {% if adresse %}
+                        <span>Adresse Principale</span>
+                    {%else%}
+                        <span>Mes adresses</span>
+                    {%endif%}
+                </div>
+
+                <div class="center">
+                    {% if adresse %}
+                        <div>
+                            <p>
+                            {% if adresse.prenom != None and adresse.nom != None %}
+                            <div class="center-line">
+                                <span>{{adresse.prenom}} {{adresse.nom}}</span>
+                            </div>
+                            {%endif%}
+                            {% if adresse.societe != None %}
+                            <div class="center-line">
+                                <span>{{adresse.societe}}</span>
+                            </div>
+                            {%endif%}
+                            {% if adresse.adresse != None %}
+                            <div class="center-line">
+                                <span>{{adresse.adresse}}</span>
+                            </div>
+                            {%endif%}
+                            {% if adresse.adresse2 != None %}
+                            <div class="center-line">
+                                <span>{{adresse.adresse2}}</span>
+                            </div>
+                            {%endif%}
+                            {% if adresse.codepostal != None %}
+                            <div class="center-line">
+                                <span>{{adresse.codepostal}}</span>
+                            </div>
+                            {%endif%}
+                            {% if adresse.ville != None %}
+                            <div class="center-line">
+                                <span>{{adresse.ville}}</span>
+                            </div>
+                            {%endif%}
+                            {% if adresse.telephone != None %}
+                            <div class="center-line">
+                                <span>{{adresse.telephone}}</span>
+                            </div>
+                            {%endif%}
+                            </p>
+                        </div>
+                    {%else%}
+                        <div class="center-line">
+                            <article class="alert alert-light" role="alert" data-alert="light" style="width: 100%;text-align: center;">Aucune adresse n'est actuellement enregistrée.</article>
+                        </div>
+                    {%endif%}
+                </div>
+
+                <div class="bottom">
+                    {% if adresses|length > 0 %}
+                        <a href="{% url 'adresses' %}"><button>Modifer mes adresses</button></a>
+                    {%else%}
+                        <a href="{% url 'adresses' %}"><button>Gérer les adresses</button></a>
+                    {%endif%}
+                </div>
+                
+            </div>
+        </section>
+    </section>
+{% endblock content %}

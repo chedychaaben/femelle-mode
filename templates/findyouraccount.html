@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Femelle mode | Retrouvez votre compte {% endblock %}
+
+{% block content %}
+<!-- SEND EMAIL TO RECOVER PASSWORD -->
+<section class="section-login">
+    <div class="container">
+        
+        <div class="login-header">
+            <h5>Retrouvez votre compte</h5>
+            <div class="seperator"></div>
+        </div>
+
+        <div class="login-box">
+        <form>
+            <div class="form-group">
+                <label >Veuillez saisir votre adresse e-mail ou votre numéro de téléphone pour rechercher votre compte:</label>
+                <div>
+                    <input type="text" placeholder="Adresse e-mail ou numéro de tél">
+                </div>
+            </div>
+
+            <div>
+                <button type="submit">Suivant</button>
+            </div>
+        </form>
+        <hr/>
+        <a href="{% url 'login' %}">
+            <button>Vous vous souvenez de votre mot de passe? Retour à la connexion</button>
+        </a>
+        </div>
+    </div>
+
+</section>
+{% endblock content %}

@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500')
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    min-height:100vh;
+    display: block;
+    overflow-x: hidden;
+}
+
+/*Seperator using hr*/
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+/*Seperator using hr*/
+
+/* Removing Button */
+button {
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+  }
+  
+  button:hover {
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+  }
+  
+  button:active {
+    outline: none;
+    border: none;
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+/* Removing Button */
+
+/*Scroll Bar*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /*The whole bar*/
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: rgba(78, 7, 17, 0.74)
+}
+  
+  /*The moving bar*/
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #212028;
+}
+/*Scroll Bar*/
+
+/* Announcment Bar Header */
+.AnnouncementBar{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;  /* same as height just to make items vertically aligned */
+    background-color: #000000;
+    position: relative;
+    overflow: hidden;
+}
+.AnnouncementBar_p{
+    font-size: 17px;
+    font-weight: 600;
+    color: #A6A2A2;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+/* Header  */
+.headerBar{
+    position: relative;
+    width: 100%;
+    height: 70px;
+    line-height: 70px;  /* same as height just to make items vertically aligned */
+    background-color: #FFFFFF;
+    display: flex;
+    overflow: hidden;
+    justify-content: space-between;
+    border-bottom: #C4C4C4 1px solid;
+    background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/*FIX HEADER WHILE SCROOLING*/
+.headerBar-fixed {
+    position: fixed;
+    top:0; 
+    left:0;
+    width: 100%; 
+    background-color: #F4F7F6;
+    z-index: 1;
+    
+}
+/*FIX HEADER WHILE SCROOLING*/
+
+/* */
+.headerBar_menu {
+    display: flex;
+    justify-content: center;
+    border-right: #C4C4C4 2px solid;
+    padding: 0 35px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.headerBar_menu:hover{
+    background-color: #C4C4C4;
+}
+
+.headerBar_menu svg{
+    width: 35px;
+    height: 70px;
+}
+
+/* */
+.headerBar_logo a{
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.headerBar_logo a div{
+    width: 80px;
+    height: 60px;
+    background-repeat: no-repeat;
+}
+
+.headerBar_logo a span{
+    margin-left: -25px;
+    color: #000000;
+    font-size: 30px;
+    -webkit-text-stroke-width: 0.75px;
+    -webkit-text-stroke-color: #FF0000;
+}
+/* */
+.headerBar_rightnav{
+    display: flex;
+    justify-content: center;
+}
+
+.headerBar_rightnav_login{
+    border-left: #C4C4C4 2px solid;
+    padding: 0 5px;
+    transition: 0.3s;
+}
+.headerBar_rightnav_login:hover{
+    background-color: #C4C4C4;
+}
+
+.headerBar_rightnav_login a{
+    text-decoration: none;
+    padding: 30px 0px;
+}
+
+.headerBar_rightnav_login svg{
+    width: 25px;
+    height: 25px;
+    color: #000;
+}
+.headerBar_rightnav_login span{
+    color: #000;
+    font-weight: 600;
+}
+
+/**/
+.headerBar_rightnav_cart{
+    border-left: #C4C4C4 2px solid;
+    border-right: #C4C4C4 2px solid;
+    margin-right: 2px;
+    padding: 0 5px;
+    transition: 0.3s;
+}
+.headerBar_rightnav_cart:hover{
+    background-color: #C4C4C4;
+}
+
+.headerBar_rightnav_cart a{
+    text-decoration: none;
+    padding: 30px 0px;
+}
+
+.headerBar_rightnav_cart svg{
+    width: 25px;
+    height: 25px;
+    color: #000;
+}
+.cart-products-count {
+    font-size: 12px;
+    color: #fff;
+    background-color: #fd322c;
+    border-radius: 100%;
+    line-height: 12px;
+    padding: 4px 4px;
+    margin-left: -10px;
+}
+.cart-price{
+    padding: 0 5px;
+    font-weight: 600;
+    color: #000;
+}
+/* Header */
+/* Mobile Handling */
+
+@media (max-width: 730px){
+    .AnnouncementBar_p{
+        font-size: 12px;
+    }
+    .headerBar_menu{
+        padding: 0 10px;
+    }
+    .headerBar_rightnav_login span {
+        display: none;
+    }
+    .headerBar_rightnav_cart .cart-price {
+        display: none;
+
+    }
+}
+
+/* Mobile Handling */
+
+/* Footer */
+footer {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    color: white;
+}
+  
+.top-footer {
+    background-color: #181818;
+    padding: 20px 15%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.top-footer-left {
+    flex: 1 1 20%;
+    float: left;
+}
+
+.top-footer-left .logo{
+    display: flex;
+    justify-content: center;
+}
+
+.top-footer-left .logo div{
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+}
+.top-footer-left .logo span{
+    align-self: center;
+}
+
+.top-footer-left .seperator{
+    width: 100%;
+    border-top : 3px solid #f3323b;
+    margin: 20px 0px;
+}
+
+.top-footer-left .social{
+    display: flex;
+    justify-content: center;
+}
+
+.top-footer-left .social a{
+    margin-left : 20px;
+}
+
+.top-footer-left .social span{
+    margin-top : 5px;
+}
+
+.top-footer-center {
+    flex: 1 1 20%;
+}
+
+.top-footer-center ul {
+    list-style-type: none;
+}
+  
+.top-footer-center ul li a {
+    text-decoration: none;
+    color: #bdb2b2;
+}
+  
+.top-footer-center ul li a:hover {
+    color: #f3323b;
+}
+  
+.top-footer-right {
+    flex: 1 1 50%;
+    float: right;
+}
+  
+.top-footer-right p {
+    color: grey;
+  }
+  
+.top-footer-right input {
+    width: 100%;
+    padding: 13px 12px;
+  }
+  
+.top-footer-right button {
+    border: 1px solid rgba(64, 59, 55, 0.15);
+    width: 100%;
+    color: #333;
+  }
+  
+.subscribe-email{
+      display: flex;
+      flex-wrap: nowrap;
+  }
+.subscribe-email input{
+    border: none;
+    color: #FFFFFF;
+    background-color: #181818;
+    border-bottom: #ff4040 3px solid;
+    /*border-bottom:#FFFFFF 3px solid;*/
+    outline: none;
+    margin: 0px 10px;
+  }
+
+.subscribe-email span{
+    font: normal normal normal 15px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+    padding: 10px 25px;
+    color: #FFFFFF;
+    background-color: #ff4040;
+    border: #ff4040 1px solid;
+    transition: 0.3s;
+    cursor: pointer;
+  } 
+  
+.subscribe-email span:hover {
+    color: #ff4040;
+    background-color: white;
+  }
+  
+.footer div span {
+    display: block;
+    text-align: center;
+  }
+  
+.footer-separator {
+    border-top: 2px solid #ff4040;
+  }
+
+.footer-bottom{
+    background-color: #2D2D2D;
+    text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+.footer-bottom img{
+    max-width: 100px;
+    max-height: 100px;
+}
+  
+/* Footer */

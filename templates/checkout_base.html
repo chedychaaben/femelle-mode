@@ -1,0 +1,89 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'static/img/serpent-icon.png' %}" />
+    <!-- Font Montserrat -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <!-- Css Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'static/css/base.css' %}?v={% now "HMf" %}">
+    <link rel="stylesheet" href="{% static 'static/css/homepage.css' %}?v={% now "HMf" %}">
+    <link rel="stylesheet" href="{% static 'static/css/other.css' %}?v={% now "HMf" %}">
+    <!-- jQuery --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+<body>
+    <section class="section-checkout">
+
+        <div class="headerBar_logo" style="margin: auto;" onclick='window.location.href=""'>
+            <a href="{% url 'homepage' %}">
+                <div style="background-image:url('{% static 'static/img/serpent-logo.svg' %}')"></div>
+                <span>erpent.</span>
+            </a>
+        </div>
+
+        <div class="content">
+            <div class="main">
+                <div class="inside">
+                    {% block content-left %}
+                    {% endblock content-left %}
+                </div>
+            </div>
+
+            <div class="aside">
+                <div class="inside">
+                                  {% for orderarticle in all_orderarticles %}
+                                  <div class="cart-product" style="border-top: none;border-bottom: 1px solid #D6D6D6;">
+                                      <div class="cart-product-left-data" style="display:flex;flex-direction: row;flex: 1 1 40%;">
+                                          <a>
+                                              <img src="{{ MEDIA_URL }}{{orderarticle.article.images.first.image.url}}">
+                                          </a>
+                                          <div style="font-size: 0.8571428571em;font-weight: 500;line-height: 1.75em;white-space: nowrap;text-align: center;border-radius: 1.75em;background-color: red;color: #fff;-webkit-box-sizing: border-box;box-sizing: border-box;width: 18px;height: 18px;">{{orderarticle.quantity}}</div>
+                                      </div>
+                                      <div class="cart-product-center-data" style="flex: 1 1 40%;">
+                                          <h3>{{orderarticle.article.title}}</h3>
+                                          <span>{{orderarticle.article.prix}} DT</span>
+                                          <span>Taille : {{orderarticle.article.size}}</span>
+                                      </div>
+                                      <div class="cart-product-right-data">
+                                          <h3>{{orderarticle.article.prix |mul:orderarticle.quantity}} DT</h3>
+                                      </div>
+                                  </div>
+                                  {% endfor %}
+                    
+                                <div class="order-summery-center-line">
+                                    <span style="font-size: 13px;">Total</span>
+                                    <span>{{cart_total}} DT</span>
+                                </div>
+                    
+                                <div class="order-summery-center-line">
+                                    <span style="font-size: 13px;">Livraison</span>
+                                    <span style="color: #32CD32">gratuit</span>
+                                </div>
+                    
+                                <div class="order-summery-bottom">
+                                    <div class="order-summery-bottom-line">
+                                        <span style="font-size: 13px;">Total TTC</span>
+                                        <span style="font-weight: 900;" >{{cart_total}} DT</span>
+                                    </div>
+                                </div>
+                    
+                      </div>
+                    
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+<script src="{% static 'static/js/app.js' %}?v={% now "HMf" %}" ></script>
+{% block scripts %}
+{% endblock scripts %}
+</html>

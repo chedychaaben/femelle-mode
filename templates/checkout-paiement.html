@@ -1,0 +1,131 @@
+{% extends "checkout_base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load crispy_forms_tags %} 
+{% block title %}Femelle mode | Paiement Pour Votre Commande{% endblock %}
+
+
+{% block content-left %}
+<section class="section-breadcrumb" style="margin: auto;">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb" >
+      <li class="breadcrumb-item"><a href="{% url 'cart' %}" style="color: #ff4040; text-decoration: none;">Panier</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'checkout' 'information' %}" style="color: #ff4040; text-decoration: none;">Information</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'checkout' 'livraison' %}" style="color: #ff4040; text-decoration: none;">Livraison</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Paiement</li>
+      </ol>
+  </nav>
+</section>
+
+
+
+<div class="main-box">
+    <div class="top">
+        <span>Contact information</span>
+    </div>
+  
+    <div class="center">
+        <div class="user-bar">
+          <img src="{{ MEDIA_URL }}{{request.user.profile.image.url}}">
+          <div class="text">
+            <span>{%if request.user.nom != '' and request.user.prenom != '' %}{{request.user.nom}} {{request.user.prenom}} ({{request.user.email}}){%else%}{{request.user.email}}{%endif%}</span>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+<div class="main-box">
+    <div class="top">
+        <span>Adresse de livraison</span>
+    </div>
+  
+    <div class="center">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" checked>
+            <label class="custom-control-label" for="customCheck1">
+                {% if adresse.prenom != None and adresse.nom != None %}
+                    {{adresse.prenom}} {{adresse.nom}}
+                {%endif%}
+                
+                {% if adresse.societe != None %}
+                <div class="center-line">
+                    <span>{{adresse.societe}}</span>
+                </div>
+                {%endif%}
+                {% if adresse.adresse != None %}
+                <div class="center-line">
+                    <span>{{adresse.adresse}}</span>
+                </div>
+                {%endif%}
+                {% if adresse.adresse2 != None %}
+                <div class="center-line">
+                    <span>{{adresse.adresse2}}</span>
+                </div>
+                {%endif%}
+                {% if adresse.codepostal != None %}
+                <div class="center-line">
+                    <span>{{adresse.codepostal}}</span>
+                </div>
+                {%endif%}
+                {% if adresse.ville != None %}
+                <div class="center-line">
+                    <span>{{adresse.ville}}</span>
+                </div>
+                {%endif%}
+                {% if adresse.telephone != None %}
+                <div class="center-line">
+                    <span>{{adresse.telephone}}</span>
+                </div>
+                {%endif%}
+                
+            </label>
+        </div>
+        
+        <a href="{% url 'checkout' 'information' %}">Modifier</a>
+
+    </div>
+</div>
+  
+<div class="main-box">
+      <div class="top">
+          <span>Mode de livraison</span>
+      </div>
+    
+    <div class="center">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" checked>
+            <label class="custom-control-label" for="customCheck1">
+            Livraison sous 2 à 4 jours
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="main-box">
+    <div class="top">
+        <span>Mode de Paiement</span>
+    </div>
+  
+        <div class="center">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked>
+                <label class="custom-control-label" for="customCheck1">
+                    <span>Payer comptant à la livraison</span>
+                    <br>
+                    <span>Vous payez lors de la livraison de votre commande</span>
+                </label>
+            </div>
+        </div>
+</div>
+
+
+<div class="main-box">
+<div class="center">
+<form method="POST">{% csrf_token %} 
+    <div class="bottom">
+        <button type="submit">Confirmer la commande</button>
+    </div>
+</form>
+</div>
+</div>
+{% endblock content-left %}

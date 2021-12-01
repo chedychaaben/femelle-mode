@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Acceuil | Femelle mode{% endblock %}
+
+{% block content %}
+
+<!--
+    DARK / LIGHT
+<div class="light-mode padd-10 difference overfl-hid">
+    <div data-w-id="14dac07f-7d15-4ddb-0d5d-3956d07aa0a6" class="light-mode__conteiner overfl-hid difference" style="transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+        
+        <div class="light-mode__text p col-wh">
+            <span class="hov-out is--1">Light Mode</span>
+        </div>
+        
+        <div class="light-mode__text p-it col-wh hov-in-parent">
+            <span data-w-id="57ebd6df-b3ab-e600-b902-534901f1a918" class="hov-in is--1" style="top: 15px;position: relative;left: -65px;">Dark Mode</span>
+        </div>
+
+    </div>
+    
+    <div data-w-id="65e9cfd5-9567-4e12-aaec-831aec393427" class="light-mode__conteiner overfl-hid difference pos-ab" style="transform: translate3d(0px, 100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"><div class="light-mode__text p col-wh hov-out">
+        <span class="hov-out is--1" style="color: black;">Dark Mode</span>
+    </div>
+    
+    <div class="light-mode__text p-it col-wh hov-in-parent">
+        <span data-w-id="f8711e4f-96ae-0226-afce-4e7ea417b8ce" class="hov-in is--1" style="top: 15px;position: relative;left: -65px; color: black;">Light Mode</span>
+    </div>
+
+    </div>
+</div>
+-->
+
+<!-- Desktop -->
+<div id="images-wrapper-desktop" data-w-id="13b05c8b-eda1-b234-caaa-0dea06b84180"  class="main-wrapper is--pc" style="will-change: transform; transform: translate3d(-3.21624%, -51.7433%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+</div>
+<!-- Desktop -->
+
+<!-- Mobile -->
+<div id="images-wrapper-mobile" class="main-wrapper is--mob">
+    <div class="wrapper__line is--first">
+    </div>
+</div>
+<!--Here i will append images to Desktop and Mobile-->
+<script>
+    const DesktopWrapper = document.getElementById('images-wrapper-desktop');
+    const MobileWrapper = document.getElementById('images-wrapper-mobile');
+    const imagesurls = []
+    const imagesredirections = []
+    
+    {% for article in Articles %}
+        imagesurls.push("{{ MEDIA_URL }}{{article.images.first.image.url}}")
+        imagesredirections.push("{% url 'articleView' article.slug %}")
+    {% endfor %}
+    
+
+    function getHtmlByUrl(id, type, url, imageurl) {
+        return `
+                <a id="ancre-tag-${type}-${id}" href="${url}" class="pos-ab is--${id} w-inline-block">
+                    <div class="overfl-hid">
+                        <img src="${imageurl}" loading="lazy" alt="" class="image is--${id} filt" onmouseover="this.style.filter = 'none';" onmouseout="this.style.filter = 'invert(100%)';" >
+                    </div>
+                `
+    }
+    for (let i=0; i < imagesurls.length ; i++){
+        DesktopWrapper.innerHTML += getHtmlByUrl(i+9, 'desktop', imagesredirections[i], imagesurls[i]);
+        MobileWrapper.innerHTML += getHtmlByUrl(i+9, 'mobile', imagesredirections[i], imagesurls[i]);
+    }
+</script>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}

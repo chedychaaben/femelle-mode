@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Femelle mode | Mes Adresses{% endblock %}
+
+{% block content %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+<section class="section-breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage' %}" >Accueil</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'account' %}">Mon compte</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Mes Adresses</li>
+        </ol>
+    </nav>
+</section>
+
+<section class="section-addresses">
+    <header>
+          <h1>MES ADDRESSES</h1>
+          <a href="{% url 'cree_adresse' %}"><button type="button" class="btn btn-success">+ Créer une nouvelle adresse</button></a>
+          <hr>
+    </header>
+    <section>
+        {% for adresse in adresses %}
+        <div class="addresses-box">
+            <div class="top">
+                <span>Adresse {{ forloop.counter }}</span>
+                
+            </div>
+
+            <div class="center">
+                    <div>
+                        <p>
+                        {% if adresse.prenom != None and adresse.nom != None %}
+                        <div class="center-line">
+                            <span>{{adresse.prenom}} {{adresse.nom}}</span>
+                        </div>
+                        {%endif%}
+                        {% if adresse.societe != None %}
+                        <div class="center-line">
+                            <span>{{adresse.societe}}</span>
+                        </div>
+                        {%endif%}
+                        {% if adresse.adresse != None %}
+                        <div class="center-line">
+                            <span>{{adresse.adresse}}</span>
+                        </div>
+                        {%endif%}
+                        {% if adresse.adresse2 != None %}
+                        <div class="center-line">
+                            <span>{{adresse.adresse2}}</span>
+                        </div>
+                        {%endif%}
+                        {% if adresse.codepostal != None %}
+                        <div class="center-line">
+                            <span>{{adresse.codepostal}}</span>
+                        </div>
+                        {%endif%}
+                        {% if adresse.ville != None %}
+                        <div class="center-line">
+                            <span>{{adresse.ville}}</span>
+                        </div>
+                        {%endif%}
+                        {% if adresse.telephone != None %}
+                        <div class="center-line">
+                            <span>{{adresse.telephone}}</span>
+                        </div>
+                        {%endif%}
+                        </p>
+                    </div>
+            </div>
+
+            <div class="bottom">
+                <a href="{% url 'modifieradresse' adresse.id %}"><button>Mettre à jour</button></a>
+                <a href="{% url 'deleteadresse' adresse.id %}"><button>Supprimer</button></a>
+            </div>
+        </div>
+        {% endfor %}
+            
+        </div>
+    </section>
+</section>
+{% endblock content %}

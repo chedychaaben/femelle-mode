@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block title %}Femelle mode | Commande n°{{order.transaction_id}}{% endblock %}
+
+{% block content %}
+
+<section class="section-breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'account' %}">Mon compte</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'account' %}">Historique de vos commandes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Commande n°{{order.transaction_id}}</li>
+        </ol>
+    </nav>
+</section>
+
+<section class="section-order-details container">
+    <header>
+        <h1>Commande n°{{order.transaction_id}} du {{order.ordered_date}}</h1>
+    </header>
+    
+    <!-- History -->
+    {% if order.states.all|length > 0 %}
+    <section id="order-history">
+
+        <div class="top">
+            <span>Suivre votre commande pas à pas</span>
+        </div>
+
+        <div class="content">
+            <table class="table table-bordered table-labeled hidden-xs-down">
+                <thead class="thead-default">
+                    <tr>
+                    <th>Date</th>
+                    <th>État</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orderstate in order.states.all %}
+                    <tr>
+                        <td>{{orderstate.creation_date|date:'j/m/Y'}}</td>
+                        <td><span class="label label-pill dark" style="background-color: {{orderstate.color}};">{{orderstate.text}}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+      </section>
+      {% endif %}
+      
+      <!-- Articles -->
+      <section id="order-articles">
+
+        <div class="top">
+            <span>Articles</span>
+        </div>
+
+        <div class="content">
+            <table class="table table-bordered table-labeled hidden-xs-down">
+
+                <thead class="thead-default">
+                    <tr>
+                    <th>Article</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orderarticle in order.orderarticles.all %}
+                    <tr>
+                        <td><strong><a>{{orderarticle.article.title}}</a></strong><br>Référence: {{orderarticle.article.refence}}<br></td>
+                        <td>{{orderarticle.quantity}}</td>
+                        <td class="text-xs-right">{{orderarticle.article.prix}} DT</td>
+                        <td class="text-xs-right">{{orderarticle.article.prix |mul:orderarticle.quantity}} DT</td>
+                    </tr>
+                    {% endfor %}
+                    <tfoot>
+                        <tr class="">
+                            <td colspan="3"><strong>Sous-total</strong></td>
+                            <td>{{order.prix}} DT</td>
+                        </tr>
+                        <tr class="text-xs-right line-shipping">
+                            <td colspan="3"><strong>Frais de livraison</strong></td>
+                            <td>gratuit</td>
+                        </tr>
+                        <tr class="text-xs-right line-total">
+                            <td colspan="3"><strong>Total</strong></td>
+                            <td><strong>{{order.prix}} DT</strong></td>
+                        </tr>
+                    </tfoot>
+                </tbody>
+            </table>
+        </div>
+      </section>
+
+      <!-- Adresses -->
+    {% if order.adresse %}
+      <section id="order-adresses">
+
+            <div class="top">
+                <span>Adresse De Facturation</span>
+            </div>
+
+            <div class="center">
+                <div>
+                    <p>
+                    {% if order.adresse.prenom != None and order.adresse.nom != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.prenom}} {{order.adresse.nom}}</span>
+                    </div>
+                    {%endif%}
+                    {% if order.adresse.societe != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.societe}}</span>
+                    </div>
+                    {%endif%}
+                    {% if order.adresse.adresse != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.adresse}}</span>
+                    </div>
+                    {%endif%}
+                    {% if order.adresse.adresse2 != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.adresse2}}</span>
+                    </div>
+                    {%endif%}
+                    {% if order.adresse.codepostal != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.codepostal}}</span>
+                    </div>
+                    {%endif%}
+                    {% if order.adresse.ville != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.ville}}</span>
+                    </div>
+                    {%endif%}
+                    {% if order.adresse.telephone != None %}
+                    <div class="center-line">
+                        <span>{{order.adresse.telephone}}</span>
+                    </div>
+                    {%endif%}
+                    </p>
+                </div>
+            </div>
+
+      </section>
+      {%endif%}
+      
+      <!-- Messages -->
+    {% if order.messages.all|length > 0 %}
+      <section id="order-messages">
+
+        <div class="top">
+            <span>Messages</span>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+            {% if forloop.last %}
+                <div class="alert alert-{{ message.tags }}" style="text-align: center;margin-top : 14px; margin: 0; position: static;">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+        <div class="content" >
+            <div class="messages">
+                {% for message in order.messages.all %}
+                <div class="message row">
+                    <div>{%if message.user.nom != None and message.user.prenom != None %}{{message.user.prenom}} {{message.user.nom}}{%else%}{{message.user.email}}{%endif%}<br>{{message.creation_date}}</div>
+                    <div class="col-sm-8"><pre>{{message.text}}</pre></div>
+                    <div ><a href="{% url 'deleteordermessage' message.id %}"><button>X</button></a></div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+    {% endif %}
+      <!-- Ajouter Message -->
+    <section id="order-add-messages">
+
+        <div class="top">
+            <span>Ajouter un message :</span>
+        </div>
+
+        <div class="content">
+            <form action="{%url 'addordermessage' %}" method="post">{% csrf_token %}
+        
+                <header>
+                <p>Si vous voulez nous laisser un message à propos de votre commande, merci de bien vouloir le renseigner dans le champ ci-contre</p>
+                </header>
+        
+                <section class="form-fields">
+        
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">Article</label>
+                    <div class="col-md-5">
+                    <select name="orderarticle_id" class="form-control form-control-select">
+                        <option value="0">-- veuillez choisir --</option>
+                        {% for orderarticle in order.orderarticles.all %}
+                        <option value="{{orderarticle.id}}">{{orderarticle.article.title}}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                </div>
+        
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label"></label>
+                    <div class="col-md-9">
+                    <textarea rows="3" name="msgText" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                </section>
+    
+            <footer class="form-footer text-sm-center">
+                <input type="hidden" name="order_id" value="{{order.id}}">
+                <button type="submit" class="btn btn-dark" >
+                    Envoyer
+                </button>
+            </footer>
+  
+            </form>
+        </div>
+    </section>
+
+</section>
+{% endblock content %}

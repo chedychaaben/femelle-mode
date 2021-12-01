@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block title %}Femelle mode | Panier{% endblock %}
+
+{% block content %}
+        <section class="container section-cart">
+            <div class="cart-container">
+                <div class="cart-box">
+                    <div class="cart-title">
+                        <span>Panier</span>
+                    </div>
+                    
+                    {% if quantity_of_articles <= 0%}
+                    <div class="cart-empty">
+                        <span>Votre panier est vide !</span>
+                        <a href="{% url 'homepage' %}#section-two">
+                            <button>Commencez vos achats</button>
+                        </a>
+                    </div>
+                    {%else%}
+                    <div class="cart-box-content">
+                        {% for orderarticle in all_orderarticles %}
+                        <div class="cart-product">
+                            <div class="cart-product-left-data">
+                                <a href="{% url 'articleView' orderarticle.article.slug %}">
+                                    <img src="{{ MEDIA_URL }}{{orderarticle.article.images.first.image.url}}">
+                                </a>
+                            </div>
+                            <div class="cart-product-center-data">
+                                <h3>{{orderarticle.article.title}}</h3>
+                                <span>{{orderarticle.article.prix}} DT</span>
+                                <span>Taille : {{orderarticle.article.size}}</span>
+                                <div class="cart-inputbox">
+                                    <button class= "update-cart" data-article="{{orderarticle.article.id}}" data-action="down" >-</button>
+                                    <input type="number" value="{{orderarticle.quantity}}" maxlength="2000">
+                                    <button class= "update-cart" data-article="{{orderarticle.article.id}}" data-action="up" >+</button>
+                                </div>
+                            </div>
+                            <div class="cart-product-right-data">
+                                <h3>{{orderarticle.article.prix |mul:orderarticle.quantity}} DT</h3>
+                                <button class= "update-cart" data-article="{{orderarticle.article.id}}" data-action="remove"  ><svg style="margin-top: -2px;" fill="currentColor"><path d="M11.077 0L12 .923 6.923 6 12 11.077l-.923.923L6 6.923.923 12 0 11.077 5.076 6 0 .923.923 0 6 5.077 11.077 0z" fill-rule="evenodd"></path></svg></button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+
+                    <div class="cart-bottom">
+                        <a href="{% url 'homepage' %}/#section-two" style="color: inherit;"><button>Continuer vos achats</button></a>
+                    </div>
+
+                </div>
+                <div class="order-summery">
+                    <div class="order-summery-top">
+                        <span>Récapitulatif</span>
+                    </div>
+
+
+
+                    <div class="order-summery-center">
+                        <div class="order-summery-center-line">
+                            <span style="font-size: 13px;">Total</span>
+                            <span>{{cart_total}} DT</span>
+                        </div>
+                        <div class="order-summery-center-line">
+                            <span style="font-size: 13px;">Livraison</span>
+                            <span style="color: #32CD32">gratuit</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="order-summery-bottom">
+                        <div class="order-summery-bottom-line">
+                            <span style="font-size: 13px;">Total TTC</span>
+                            <span style="font-weight: 900;" >{{cart_total}} DT</span>
+                        </div>
+                        <div class="order-summery-checkout">
+                            <a href="{% if request.user.is_authenticated and selected_order.checkout_step %}{% url 'checkout' selected_order.checkout_step %}{% else %}{% url 'checkout' 'information' %}{% endif %}"><button>
+                                <svg style="margin-top: -5px;" viewBox="0 0 11 14" fill="currentColor" width="11" height="14"><g id="Page-1" stroke="none" fill="none" stroke-width="1" fill-rule="evenodd"><g id="Group" fill="currentColor"><path d="M0,12.7905281 C0,13.348044 0.444836974,13.8 0.995577499,13.8 L10.0044225,13.8 C10.5542648,13.8 11,13.3515084 11,12.7905281 L11,6.00947189 C11,5.45195596 10.555163,5 10.0044225,5 L0.995577499,5 C0.445735229,5 0,5.44849157 0,6.00947189 L0,12.7905281 Z" id="Stroke-1"></path><path d="M9.5,5 L9.5,4.07597662 C9.5,2.08610548 7.69574843,0.5 5.5,0.5 C3.30425157,0.5 1.5,2.08610548 1.5,4.07597662 L1.5,5 L2.5,5 L2.5,4.07597662 C2.5,2.66911962 3.82991528,1.5 5.5,1.5 C7.17008472,1.5 8.5,2.66911962 8.5,4.07597662 L8.5,5 L9.5,5 Z" id="Stroke-3" fill-rule="nonzero"></path></g></g></svg>
+                                Commander</button></a>
+                        </div>
+                    </div>
+
+                </div>
+                {%endif%}
+            </div>
+
+        </section>
+{% endblock content %}

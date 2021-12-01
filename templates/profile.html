@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %} 
+{% block title %}Femelle mode | Profile de {%if request.user.nom != '' and request.user.prenom != '' %}{{request.user.nom}} {{request.user.prenom}}{%else%}{{request.user.email}}{%endif%} {% endblock %}
+
+{% block content %}
+         <section class="section-breadcrumb">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}" style="color: #ff4040; text-decoration: none;">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'account' %}" style="color: #ff4040; text-decoration: none;">Mon compte</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Mes informations personnelles</li>
+                </ol>
+            </nav>
+        </section>
+
+    <section class="section-profile">
+            <div class="container">
+                <div class="login-box">
+                    <hr/>
+                <form class="form-signin" method="POST">{% csrf_token %} 
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert" style="text-align: center;">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                {{ field | as_crispy_field }}
+                            </div>
+                    {% endfor %}
+                    <div>
+                        <button type="submit">
+                            Confirmer
+                        </button>
+                    </div>
+                </form>
+                <hr/>
+                <a href="{% url 'changepassword' request.user.id %}">
+                    <button class="create-account-btn">Modifier ou réinitialiser votre mot de passe ?</button>
+                </a>
+                <hr/>
+                </div>
+            </div>
+    </section>
+{% endblock content %}
